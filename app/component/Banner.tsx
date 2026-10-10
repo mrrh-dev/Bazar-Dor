@@ -1,3 +1,4 @@
+//'use client'
 import { Button } from '@heroui/react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -23,10 +24,7 @@ const Banner = () => {
               বিস্তারিত, গড়, সর্বনিম্ন-সর্বাধিক এবং দামের পরিবর্তন এক জায়গায়।
             </p>
             <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 mt-8">
-              <Link href="/">
-                {/* <button className="px-6 py-3 text-sm font-semibold text-black rounded-2xl bg-green-700 hover:opacity-95 shadow-sm">
-                  BROWSE WORKOUTS
-                </button> */}
+              <Link href="#AllProducts">
                 <Button className="bg-green-700">সব পণ্য দেখুন</Button>
               </Link>
             </div>

@@ -27,7 +27,7 @@ const AllProducts = async () => {
   const product = await productitem();
 
   return (
-    <div className="container mx-auto p-4">
+    <div id="AllProducts" className="container mx-auto p-4 scroll-mt-6">
       {/* Header */}
       <div className="mb-6 flex items-center gap-2 text-xl font-bold text-gray-800 border-b pb-2">
         <div>
@@ -38,7 +38,6 @@ const AllProducts = async () => {
         </div>
       </div>
 
-      {/* 1. Responsive Grid System for Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {product.map((item: Product) => (
           <Link key={item.id} href={`/productdetails/${item.id}`}>
@@ -97,3 +96,4 @@ const AllProducts = async () => {
 };
 
 export default AllProducts;
+//className="container mx-auto p-4"
