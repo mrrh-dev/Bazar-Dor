@@ -17,7 +17,9 @@ const formatBengaliNumber = (amount: number) => {
   return new Intl.NumberFormat('bn-BD').format(amount);
 };
 const marquee = async () => {
-  const res = await fetch('https://api.abcz.workers.dev/api/bazardor/products');
+  const res = await fetch(
+    'https://openapi.programming-hero.com/api/bazardor/products',
+  );
   if (!res.ok) throw new Error('fetching is not successful');
   return res.json();
 };
@@ -38,7 +40,8 @@ const Marquee = async () => {
                   item.change.dir === 'up' ? 'text-green-600' : 'text-red-600'
                 }
               >
-                {item.change.dir === 'up' ? '▲' : '▼'} {item.change.pct}
+                {item.change.dir === 'up' ? '▲' : '▼'}{' '}
+                {formatBengaliNumber(item.change.pct)}
               </span>
             </span>
           </span>

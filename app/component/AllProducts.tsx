@@ -16,7 +16,9 @@ const formatBengaliNumber = (amount: number) => {
   return new Intl.NumberFormat('bn-BD').format(amount);
 };
 const productitem = async () => {
-  const res = await fetch('https://api.abcz.workers.dev/api/bazardor/products');
+  const res = await fetch(
+    'https://openapi.programming-hero.com/api/bazardor/products',
+  );
   if (!res.ok) throw new Error('fetching is not successful');
   return res.json();
 };
@@ -69,9 +71,17 @@ const AllProducts = async () => {
               </div>
 
               {/* Price hike indicator badge */}
-              <div className="flex items-center gap-1 rounded-full bg-red-50 px-2.5 py-1 text-xs font-bold text-red-600">
-                <span className="text-[10px]">▲</span>
-                <span>{formatBengaliNumber(item.change.pct)}%</span>
+              <div
+                className={`flex items-center gap-1 rounded-full ${item.change.dir === 'up' ? 'bg-red-50' : 'bg-green-50'} px-2.5 py-1 text-xs font-bold text-red-600`}
+              >
+                <span
+                  className={
+                    item.change.dir === 'up' ? 'text-red-600' : 'text-green-600'
+                  }
+                >
+                  {item.change.dir === 'up' ? '▲' : '▼'}{' '}
+                  {formatBengaliNumber(item.change.pct)} %
+                </span>
               </div>
             </div>
           </div>
