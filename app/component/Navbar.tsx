@@ -31,8 +31,12 @@ const Navbar = () => {
             </div>
           </Link>
           <div className="flex justify-between">
-            <Button className="bg-white text-black">সাইন ইন</Button>
-            <Button className="bg-green-700">সাইন আপ</Button>
+            <Link href="sign-in">
+              <Button className="bg-white text-black">সাইন ইন</Button>
+            </Link>
+            <Link href="/sign-up">
+              <Button className="bg-green-700">সাইন আপ</Button>
+            </Link>
           </div>
         </div>
       </div>

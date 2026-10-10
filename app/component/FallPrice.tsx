@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface Product {
   id: number;
@@ -16,7 +17,9 @@ const formatBengaliNumber = (amount: number) => {
   return new Intl.NumberFormat('bn-BD').format(amount);
 };
 const rise = async () => {
-  const res = await fetch('https://openapi.programming-hero.com/api/bazardor/products');
+  const res = await fetch(
+    'https://openapi.programming-hero.com/api/bazardor/products',
+  );
   if (!res.ok) throw new Error('fetching is not successful');
   return res.json();
 };
@@ -36,45 +39,47 @@ const FallPrice = async () => {
       {/* 1. Responsive Grid System for Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {product.slice(0, 9).map((item: Product) => (
-          <div
-            key={item.id}
-            className="relative flex flex-col justify-between overflow-hidden rounded-2xl border border-gray-100 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md"
-          >
-            {/* Top Row: Product Image & Name */}
-            <div className="flex items-start gap-4">
-              <div className="h-16 w-16 shrink-0 overflow-hidden rounded-xl border border-gray-100 bg-gray-50 flex items-center justify-center">
-                <p>{item.image}</p>
-              </div>
-              <div>
-                <h3 className="text-base font-bold text-gray-900 line-clamp-1">
-                  {item.nameBn}
-                </h3>
-                <p className="text-xs font-medium text-gray-400 mt-0.5">
-                  প্রতি কেজি
-                </p>
-              </div>
-            </div>
-
-            {/* Bottom Row: Price & Badge Indicators */}
-            <div className="mt-6 flex items-end justify-between">
-              <div>
-                <p className="text-[11px] font-medium tracking-wider text-gray-400 uppercase">
-                  আজকের দাম
-                </p>
-                <p className="text-xl font-extrabold text-gray-900 mt-0.5">
-                  ৳{formatBengaliNumber(item.today)}
-                </p>
+          <Link key={item.id} href={`/productdetails/${item.id}`}>
+            <div
+              key={item.id}
+              className="relative flex flex-col justify-between overflow-hidden rounded-2xl border border-gray-100 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md"
+            >
+              {/* Top Row: Product Image & Name */}
+              <div className="flex items-start gap-4">
+                <div className="h-16 w-16 shrink-0 overflow-hidden rounded-xl border border-gray-100 bg-gray-50 flex items-center justify-center">
+                  <p>{item.image}</p>
+                </div>
+                <div>
+                  <h3 className="text-base font-bold text-gray-900 line-clamp-1">
+                    {item.nameBn}
+                  </h3>
+                  <p className="text-xs font-medium text-gray-400 mt-0.5">
+                    প্রতি কেজি
+                  </p>
+                </div>
               </div>
 
-              {/* Price hike indicator badge */}
-              <div className="flex items-center gap-1 rounded-full bg-green-50 px-2.5 py-1 text-xs font-bold text-red-600">
-                <span className="text-[10px] text-green-600">▼</span>
-                <span className="text-green-600">
-                  {formatBengaliNumber(item.change.pct)}%
-                </span>
+              {/* Bottom Row: Price & Badge Indicators */}
+              <div className="mt-6 flex items-end justify-between">
+                <div>
+                  <p className="text-[11px] font-medium tracking-wider text-gray-400 uppercase">
+                    আজকের দাম
+                  </p>
+                  <p className="text-xl font-extrabold text-gray-900 mt-0.5">
+                    ৳{formatBengaliNumber(item.today)}
+                  </p>
+                </div>
+
+                {/* Price hike indicator badge */}
+                <div className="flex items-center gap-1 rounded-full bg-green-50 px-2.5 py-1 text-xs font-bold text-red-600">
+                  <span className="text-[10px] text-green-600">▼</span>
+                  <span className="text-green-600">
+                    {formatBengaliNumber(item.change.pct)}%
+                  </span>
+                </div>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

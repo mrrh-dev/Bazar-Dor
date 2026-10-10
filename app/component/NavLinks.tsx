@@ -18,8 +18,8 @@ const navlinks = async () => {
 };
 
 const NavLinks = async () => {
-  const catergory = await navlinks();
-  return <NavLinksClient catergory={catergory}></NavLinksClient>;
+  const category = await navlinks();
+  return <NavLinksClient category={category}></NavLinksClient>;
 };
 
 export default NavLinks;

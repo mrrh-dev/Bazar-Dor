@@ -66,7 +66,9 @@ const ProductDetailsPage = async ({ params }: Paramsprops) => {
             <span>হোম</span>
           </Link>
           <span>›</span>
-          <span>{product.categoryNameBn}</span>
+          <Link href={`/productbycategory/${product.category}`}>
+            <span>{product.categoryNameBn}</span>
+          </Link>
           <span>›</span>
           <span>{product.nameBn}</span>
         </nav>
