@@ -23,4 +23,3 @@ const NavLinks = async () => {
 };
 
 export default NavLinks;
-//container mx-25 flex justify-start gap-4 p-4

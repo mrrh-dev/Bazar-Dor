@@ -6,13 +6,25 @@ interface Product {
   image: string;
   nameBn: string;
   today: number;
-  //unit: string;
+  unit: string;
   change: {
     dir: string;
     pct: number;
   };
 }
+const unitMap: Record<string, string> = {
+  kg: 'কেজি',
+  g: 'গ্রাম',
+  lbs: 'পাউন্ড',
+  pcs: 'টি',
+  litre: 'লিটার',
+  dozen: 'ডজন',
+  piece: 'পিস',
+};
 
+export function formatUnit(unit: string): string {
+  return unitMap[unit.toLowerCase()] || unit;
+}
 const formatBengaliNumber = (amount: number) => {
   return new Intl.NumberFormat('bn-BD').format(amount);
 };
@@ -54,7 +66,7 @@ const Pricerise = async () => {
                     {item.nameBn}
                   </h3>
                   <p className="text-xs font-medium text-gray-400 mt-0.5">
-                    প্রতি কেজি
+                    {formatUnit(item.unit)}
                   </p>
                 </div>
               </div>

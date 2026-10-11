@@ -1,3 +1,4 @@
+import { useSession } from '@/lib/auth-client';
 import Link from 'next/link';
 import React from 'react';
 export interface Paramsprops {
@@ -28,8 +29,21 @@ interface Product {
   };
   markets: Market[];
 }
+const unitMap: Record<string, string> = {
+  kg: 'কেজি',
+  g: 'গ্রাম',
+  lbs: 'পাউন্ড',
+  pcs: 'টি',
+  litre: 'লিটার',
+  dozen: 'ডজন',
+  piece: 'পিস',
+};
 
+export function formatUnit(unit: string): string {
+  return unitMap[unit.toLowerCase()] || unit;
+}
 const ProductDetailsPage = async ({ params }: Paramsprops) => {
+  //const { data: session, isPending } = useSession();
   const { id } = await params;
   const res = await fetch(
     `https://openapi.programming-hero.com/api/bazardor/products/${id}`,
@@ -86,7 +100,7 @@ const ProductDetailsPage = async ({ params }: Paramsprops) => {
               </h1>
 
               <p className="mt-1 text-xs text-[#69756c]">
-                {product.categoryNameBn} · {product.unit}
+                {product.categoryNameBn} · {formatUnit(product.unit)}
               </p>
 
               <p className="mt-2 text-xs text-[#69756c]">

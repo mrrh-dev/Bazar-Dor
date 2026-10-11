@@ -4,6 +4,8 @@ import './globals.css';
 import Navbar from './component/Navbar';
 import Marquee from './component/Marquee';
 import Footer from './component/Footer';
+import { ToastContainer } from 'react-toastify';
+import NavLinks from './component/NavLinks';
 
 const hindSiliguri = Hind_Siliguri({
   subsets: ['latin', 'bengali'],
@@ -28,11 +30,12 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
       className={`${hindSiliguri.className} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <Navbar></Navbar>
+        <Navbar navLinks={<NavLinks />} />
         <Marquee></Marquee>
 
         <div>{children}</div>
         <Footer></Footer>
+        <ToastContainer></ToastContainer>
       </body>
     </html>
   );
